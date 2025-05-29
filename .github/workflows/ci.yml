@@ -29,6 +29,17 @@ jobs:
       with:
         name: pylint-report
         path: pylint-report.txt
+
+    - name: Check format with black
+      continue-on-error: true
+      run: |
+        black --check src tests --config pyproject.toml
+
+    - name: Upload black report
+      uses: actions/upload-artifact@v4
+      with:
+        name: black-report
+        path: black-report.txt
     
     
 
