@@ -47,4 +47,4 @@ jobs:
         path: |
           pylint-report.txt
           bandit_report.txt
-          pytest_report.xml
+          coverage.xml
