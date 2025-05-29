@@ -44,5 +44,5 @@ jobs:
         name: CI reports
         path: |
           pylint-report.txt
-          black-report.txt
           bandit-report.txt
+          pytest_report.html
