@@ -38,6 +38,7 @@ jobs:
       run: |
         export PYTHONPATH=$PYTHONPATH:/home/runner/work/Ci-Pipeline-Python/Ci-Pipeline-Python/src
         pytest --cov=src --cov-report=xml --cov report=html || true
+        ls
         
     - name: Upload CI reports
       if: always()
@@ -48,4 +49,10 @@ jobs:
           pylint-report.txt
           bandit_report.txt
           coverage.xml
-          htmlcov/index.html
+
+    - name: Upload test reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test report
+        path: htmlcov/index.html
