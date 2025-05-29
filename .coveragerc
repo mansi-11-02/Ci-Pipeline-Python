@@ -1,0 +1,4 @@
+[report]
+fail_under = 80
+[run]
+omit = tests/
