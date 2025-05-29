@@ -48,4 +48,23 @@ jobs:
           bandit_report.txt
           htmlcov/index.html
 
+      
+    - name: SonarQube Scan
+      env:
+        SONAR_URL: https://sonarcloud.io/
+        SONAR_PROJECT_KEY: mansi-11-02_Ci-Pipeline-Python
+        SONAR_SOURCES: src
+        SONAR_TOKEN: ab7a9bceb63ff2fbc096218c25a798b91c265403
+      run: |
+        ./sonar-scanner/bin/sonar-scanner \
+        -Dsonar.issuesReport.console.enable=true \
+        -Dsonar.host.url=${{ env.SONAR_URL }} \
+        -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }} \
+        -Dsonar.sources=${{ env.SONAR_SOURCES }} \
+        -Dsonar.python.coverage.reportPaths=coverage.xml \
+        -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
+        -Dsonar.sourceEncoding=UTF-8 \
+        -Dsonar.verbose=true
+
+
 
