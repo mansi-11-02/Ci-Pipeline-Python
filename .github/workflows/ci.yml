@@ -36,7 +36,7 @@ jobs:
       continue-on-error: true
       run: |
         export PYTHONPATH=$PYTHONPATH:/home/runner/work/Ci-Pipeline-Python/Ci-Pipeline-Python/src
-        pytest --cov=src --cov-report=xml --cov report=html || true
+        pytest --cov=src --cov-report=xml --cov-report=html || true
         ls
         
     - name: Upload CI reports
