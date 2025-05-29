@@ -2,3 +2,4 @@ pylint
 black
 pytest
 bandit
+pytest-html
