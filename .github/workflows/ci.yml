@@ -45,5 +45,5 @@ jobs:
         name: CI reports
         path: |
           pylint-report.txt
-          bandit-report.txt
+          bandit_report.txt
           pytest_report.html
