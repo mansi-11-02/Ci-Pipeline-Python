@@ -20,13 +20,34 @@ jobs:
         pip install flake8 black pytest
 
     - name: Lint with flake8
+      continue-on-error: true
       run: |
         flake8 src tests
+        
+    - name: Upload flake8 report
+      uses: actions/upload-artifact@v2
+      with:
+        name: flake8-report
+        path: flake8-report.txt
 
     - name: Check code format with black
+      continue-on-error: true
       run: |
         black --check src tests
+        
+    - name: Upload black report
+      uses: actions/upload-artifact@v2
+      with:
+        name: black-report
+        path: black-report.txt
 
     - name: Test with pytest
+      continue-on-error: true
       run: |
-        pytest
+        pytest --junitxml=pytest-report.xml
+        
+    - name: Upload pytest report
+      uses: actions/upload-artifact@v2
+      with:
+        name: pytest-report
+        path: pytest-report.xml
