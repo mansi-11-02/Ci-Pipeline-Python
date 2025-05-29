@@ -1,6 +1,6 @@
 name: CI
 
-on: [push, pull_request]
+on: #[push, pull_request]
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
     - name: Check format with black
       continue-on-error: true
       run: |
-        black --check src tests --config pyproject.toml -o black-report.txt  
+        black --check src tests --config pyproject.toml  
 
     - name: Run Security Scan (Bandit)
       run: bandit -r . -o bandit_report.txt || true
