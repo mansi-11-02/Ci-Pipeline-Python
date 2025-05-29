@@ -35,6 +35,7 @@ jobs:
     - name: Run pytest with coverage
       continue-on-error: true
       run: |
+        export PYTHONPATH=$PYTHONPATH:/home/runner/work/Ci-Pipeline-Python/Ci-Pipeline-Python/src
         pytest --html=pytest_report.html --self-contained-html || true
         
     - name: Upload CI reports
