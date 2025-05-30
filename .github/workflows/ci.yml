@@ -79,7 +79,7 @@ jobs:
         server_address: smtp.gmail.com
         server_port: 465
         username: mansikhamkar1122@gmail.com
-        password: Mansi@2444
+        password: pndl vitd uigs cycf
         subject: "CI Report and SonarQube Dashboard - CI"
         to: mohankhamker@gmail.com
         from: GitHub Actions mansikhamkar1122@gmail.com
