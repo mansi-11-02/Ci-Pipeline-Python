@@ -72,5 +72,32 @@ jobs:
         -Dsonar.verbose=true \
         -Dsonar.organization=mansi-11-02
 
+    - name: Send Email Notification
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: mansikhamkar1122@gmail.com
+        password: Mansi@2444
+        subject: "CI Report and SonarQube Dashboard - CI"
+        to: mohankhamker@gmail.com
+        from: GitHub Actions mansikhamkar1122@gmail.com
+        body: |
+          Hello,
+
+          The CI pipeline has completed. Please find the reports and SonarQube dashboard below:
+
+          - SonarQube Dashboard: https://sonarcloud.io/project/overview?id=mansi-11-02_Ci-Pipeline-Python
+          - Pylint Report, Bandit Report, and Coverage Report are attached.
+
+          Regards,
+          GitHub Actions
+        attachments: |
+          pylint-report.txt
+          bandit_report.txt
+          htmlcov/index.html
+
+
 
 
