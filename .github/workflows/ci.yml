@@ -60,7 +60,6 @@ jobs:
         SONAR_URL: https://sonarcloud.io/
         SONAR_PROJECT_KEY: mansi-11-02_Ci-Pipeline-Python
         SONAR_SOURCES: src
-        SONAR_TOKEN: ab7a9bceb63ff2fbc096218c25a798b91c265403
       run: |
         ./sonar-scanner/bin/sonar-scanner -X \
         -Dsonar.issuesReport.console.enable=true \
