@@ -78,11 +78,11 @@ jobs:
       with:
         server_address: smtp.gmail.com
         server_port: 465
-        username: mansikhamkar1122@gmail.com
-        password: pndl vitd uigs cycf
+        username: ${{ secrets.SENDER_MAIL }}
+        password: ${{ secrets.SENDER_PASSWORD }}
         subject: "CI Report and SonarQube Dashboard - CI"
-        to: mohankhamker@gmail.com
-        from: GitHub Actions mansikhamkar1122@gmail.com
+        to: ${{ secrets.RECEIVER_MAIL }}
+        from: GitHub Actions ${{ secrets.SENDER_MAIL }}
         body: |
           Hello,
 
