@@ -70,7 +70,8 @@ jobs:
         -Dsonar.python.coverage.reportPaths=coverage.xml \
         -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
         -Dsonar.sourceEncoding=UTF-8 \
-        -Dsonar.verbose=true
+        -Dsonar.verbose=true \
+        -Dsonar.organization=mansi-11-02
 
 
 
