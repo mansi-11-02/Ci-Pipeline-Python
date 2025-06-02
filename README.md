@@ -51,6 +51,9 @@ The pipeline runs on every push to the repository.
       - SonarQube dashboard link
       - Attached reports
     - ⚠️ Important: Use an App Password for Gmail if 2FA is enabled.
+    - The mail will look like this
+   ![Screenshot_2025-06-02-22-37-27-09_e307a3f9df9f380ebaf106e1dc980bb6](https://github.com/user-attachments/assets/4742e679-9079-4062-9217-61204c5a5ad8)
+
 
 ## ⚠️ About `continue-on-error: true`
 
