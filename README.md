@@ -4,7 +4,7 @@ This project implements a Continuous Integration (CI) pipeline using GitHub Acti
 
 ## 🚀 Workflow Trigger
 
-The pipeline runs on every push or pull request to the repository.
+The pipeline runs on every push to the repository.
 
 ## 🧱 Workflow Steps Breakdown
 
@@ -19,30 +19,34 @@ The pipeline runs on every push or pull request to the repository.
    - Installs and sets up the SonarQube scanner.
 
 4. **Lint with Pylint**
+   - Linting checks code for syntax and style issues to ensure consistency and catch potential errors.
    - Runs static code analysis using pylint. The configuration is defined in `.pylintrc`.
    - Edit `.pylintrc` to customize linting rules (e.g., naming conventions, complexity thresholds).
 
-5. **Check Code Format with Black**
+6. **Check Code Format with Black**
+   - Formatting automatically adjusts code layout to follow defined style guidelines.
    - Checks if code is formatted according to black. Fails if formatting is incorrect.
    - Edit `pyproject.toml` to configure black (e.g., line length, exclusions).
 
-6. **Run Security Scan with Bandit**
+8. **Run Security Scan with Bandit**
+   - Security scanning analyzes code for known vulnerabilities and insecure coding practices.
    - Scans for security issues in Python code.
    - `|| true` ensures the pipeline continues even if issues are found (for now).
 
-7. **Run Tests with Coverage**
+10. **Run Tests with Coverage**
+   - Testing runs automated tests to verify that the code behaves as expected and meets requirements.
    - Runs unit tests and generates code coverage reports.
    - Coverage is used later by SonarQube.
 
-8. **Upload CI Reports**
+11. **Upload CI Reports**
    - Uploads reports (pylint, bandit, coverage) as artifacts for download.
 
-9. **SonarQube Scan**
+11. **SonarQube Scan**
    - Performs static analysis and uploads results to SonarCloud.
    - Uses `SONAR_TOKEN` secret for authentication.
    - Project key and organization are configured in the script.
 
-10. **Send Email Notification**
+11. **Send Email Notification**
     - Sends an email with:
       - SonarQube dashboard link
       - Attached reports
