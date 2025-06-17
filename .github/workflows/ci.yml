@@ -17,6 +17,14 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
+    - name: Check cache status
+      run: |
+        if [ -d ~/.cache/pip ]; then
+          echo "✅ Cache directory exists. Pip cache may be reused."
+        else
+          echo "❌ Cache directory not found. Dependencies will be downloaded."
+        fi
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -45,7 +53,6 @@ jobs:
           sudo mv sonar-scanner-6.2.1.4610 sonar-scanner
           sudo chmod -R 777 sonar-scanner
         fi
-
     - name: Lint with pylint
       continue-on-error: true
       run: |
@@ -115,5 +122,5 @@ jobs:
           GitHub Actions
         attachments: |
           pylint-report.txt
-          bandit_report.txt
+          bandit-report.txt
           htmlcov/index.html
