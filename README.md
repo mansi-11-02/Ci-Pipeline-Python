@@ -4,7 +4,7 @@ This project implements a Continuous Integration (CI) pipeline using GitHub Acti
 
 ## 🚀 Workflow Trigger
 
-The pipeline runs on every push to the repository.
+The pipeline runs on every push to the repository. 
 
 ## 🧱 Workflow Steps Breakdown
 
