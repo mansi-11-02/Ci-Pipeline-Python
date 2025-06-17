@@ -5,9 +5,17 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
- 
-    steps: 
+
+    steps:
     - uses: actions/checkout@v2
+
+    - name: Cache Python dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -18,12 +26,25 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        sudo apt-get update -y
-        sudo apt install wget unzip -y
-        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.2.1.4610.zip -O sonar-scanner-cli.zip
-        unzip sonar-scanner-cli.zip
-        sudo mv  sonar-scanner-6.2.1.4610 sonar-scanner
-        sudo chmod -R 777 sonar-scanner
+
+    - name: Cache SonarScanner
+      uses: actions/cache@v3
+      with:
+        path: sonar-scanner
+        key: ${{ runner.os }}-sonar-scanner-6.2.1
+        restore-keys: |
+          ${{ runner.os }}-sonar-scanner-
+
+    - name: Install SonarScanner if not cached
+      run: |
+        if [ ! -d "sonar-scanner" ]; then
+          sudo apt-get update -y
+          sudo apt install wget unzip -y
+          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.2.1.4610.zip -O sonar-scanner-cli.zip
+          unzip sonar-scanner-cli.zip
+          sudo mv sonar-scanner-6.2.1.4610 sonar-scanner
+          sudo chmod -R 777 sonar-scanner
+        fi
 
     - name: Lint with pylint
       continue-on-error: true
@@ -43,7 +64,7 @@ jobs:
       run: |
         export PYTHONPATH=$PYTHONPATH:/home/runner/work/Ci-Pipeline-Python/Ci-Pipeline-Python/src
         pytest --cov=src --cov-report=xml --cov-report=html || true
-        
+
     - name: Upload CI reports
       if: always()
       uses: actions/upload-artifact@v4
@@ -54,7 +75,6 @@ jobs:
           bandit_report.txt
           htmlcov/index.html
 
-      
     - name: SonarQube Scan
       env:
         SONAR_URL: https://sonarcloud.io/
@@ -97,7 +117,3 @@ jobs:
           pylint-report.txt
           bandit_report.txt
           htmlcov/index.html
-
-
-
-
